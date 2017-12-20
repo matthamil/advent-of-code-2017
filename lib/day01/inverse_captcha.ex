@@ -4,14 +4,14 @@ defmodule AdventOfCode.Day01.InverseCaptcha do
     |> Enum.concat([head])
   end
 
-  defp increment_if_next_duplicate([_], sum), do: sum
-  defp increment_if_next_duplicate([a, a | rest], sum) do
+  defp increment_if_next_is_duplicate([_], sum), do: sum
+  defp increment_if_next_is_duplicate([a, a | rest], sum) do
     [a | rest]
-    |> increment_if_next_duplicate(sum + a)
+    |> increment_if_next_is_duplicate(sum + a)
   end
-  defp increment_if_next_duplicate([_a, b | rest], sum) do
+  defp increment_if_next_is_duplicate([_a, b | rest], sum) do
     [b | rest]
-    |> increment_if_next_duplicate(sum)
+    |> increment_if_next_is_duplicate(sum)
   end
 
   def init(input) do
@@ -19,6 +19,6 @@ defmodule AdventOfCode.Day01.InverseCaptcha do
     |> String.codepoints
     |> Enum.map(&String.to_integer(&1))
     |> push_head_to_tail
-    |> increment_if_next_duplicate(0)
+    |> increment_if_next_is_duplicate(0)
   end
 end
