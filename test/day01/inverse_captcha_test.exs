@@ -17,4 +17,9 @@ defmodule AdventOfCodeTest.Day01.InverseCaptcha do
   test "91212129 produces 9 because the only digit that matches the next one is the last digit, 9." do
     assert init("91212129") == 9
   end
+
+  test "puzzle input should be" do
+    input = File.read!("./test/day01/test_input.txt") |> String.trim()
+    assert init(input) == 1141
+  end
 end
